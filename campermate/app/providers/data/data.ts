@@ -2,16 +2,28 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-/*
-  Generated class for the Data provider.
 
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
+import {Storage, SqlStorage} from 'ionic-angular';
+
+
+
+
 @Injectable()
 export class Data {
 
-  constructor(private http: Http) {}
+  storage: Storage;
+
+  constructor(){
+    this.storage = new Storage(SqlStorage, {name:'photos'});
+  }
+
+  getData(): Promise<any> {
+    return this.storage.get('photos');
+  }
+
+  save(data): void {
+    let newData = JSON.stringify(data);
+    this.storage.set('photos', newData);
+  }
 
 }
-

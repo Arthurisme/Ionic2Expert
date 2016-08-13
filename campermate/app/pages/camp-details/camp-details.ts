@@ -47,7 +47,7 @@ export class CampDetailsPage {
   }
 
   saveForm(): void {
-    // let data = this.campDetailsForm.value;
+    let data = this.campDetailsForm.value;
     // this.dataService.setCampDetails(data);
   }
 
