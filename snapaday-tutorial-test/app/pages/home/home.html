@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar danger>
+    <ion-title>
+      <img src = "images/logo.png" class="logo" />
+    </ion-title>
+
+    <ion-buttons end>
+      <button (click)="playSlideshow()"><ion-icon name="play"></ion-icon></button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-list no-lines>
+
+    <button ion-item detail-none *ngIf="!photoTaken" (click)="takePhoto()">
+      <img src="images/smile.png" class="list-photo" />
+    </button>
+
+    <ion-item-sliding *ngFor="let photo of photos">
+
+      <ion-item>
+        <img [src]="photo.image" class="list-photo" />
+        <ion-badge item-right light class="date-badge">{{photo.date | daysAgo}} days ago</ion-badge>
+      </ion-item>
+
+      <ion-item-options>
+        <button light (click)="removePhoto(photo)"><ion-icon name="trash"></ion-icon></button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+
+</ion-content>

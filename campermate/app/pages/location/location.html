@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar primary>
+    <ion-title><img src = "images/logo.png" class="logo" /></ion-title>
+
+    <ion-buttons start>
+      <button (click)="setLocation()"><ion-icon name="pin"></ion-icon></button>
+    </ion-buttons>
+
+    <ion-buttons end>
+      <button (click)="takeMeHome()"><ion-icon name="walk"></ion-icon></button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <div #pleaseConnect id="please-connect">
+    <p>Please connect to the Internet...</p>
+  </div>
+
+  <div #map id="map"></div>
+
+</ion-content>
