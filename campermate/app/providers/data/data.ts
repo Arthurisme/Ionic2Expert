@@ -14,16 +14,55 @@ export class Data {
   storage: Storage;
 
   constructor(){
-    this.storage = new Storage(SqlStorage, {name:'photos'});
+    this.storage = new Storage(SqlStorage, {name:'campermate'});
   }
+
+  setMyDetails(data: Object): void {
+    let newData = JSON.stringify(data);
+    this.storage.set('mydetails', newData);
+  }
+
+
+
+  setCampDetails(data: Object): void {
+    let newData = JSON.stringify(data); this.storage.set('campdetails', newData);
+  }
+
+
+  setLocation(data: Object) : void {
+    let newData = JSON.stringify(data);
+    this.storage.set('location', newData);
+  }
+
+  getMyDetails():Promise<any> {
+    return this.storage.get('campdatails');
+  }
+
+  getCampDetails(): Promise<any> {
+    return this.storage.get('campdetails');
+  }
+  getLocation(): Promise<any> {
+    return this.storage.get('location');
+  }
+
 
   getData(): Promise<any> {
-    return this.storage.get('photos');
+    return this.storage.get('checklists');
   }
 
-  save(data): void {
-    let newData = JSON.stringify(data);
-    this.storage.set('photos', newData);
+  save(data: any): void {
+
+    let saveData = [];
+
+    //Remove observables
+    data.forEach((checklist) =>{
+      saveData.push({
+        title: checklist.title,
+        items: checklist.items
+      });
+    });
+    let newData = JSON.stringify(saveData);
+    this.storage.set('checklists', newData);
   }
 
 }

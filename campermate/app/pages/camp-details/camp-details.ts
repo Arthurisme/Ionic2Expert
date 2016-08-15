@@ -23,32 +23,35 @@ export class CampDetailsPage {
       notes: ['']
     });
 
-    // this.dataService.getCampDetails().then((details) => {
-    //
-    //   let savedDetails: any = false;
-    //
-    //   if(typeof(details) != "undefined"){
-    //     savedDetails = JSON.parse(details);
-    //   }
-    //
-    //   let formControls: any = this.campDetailsForm.controls;
-    //
-    //   if(savedDetails){
-    //     formControls.gateAccessCode.updateValue(savedDetails.gateAccessCode);
-    //     formControls.ammenitiesCode.updateValue(savedDetails.ammenitiesCode);
-    //     formControls.wifiPassword.updateValue(savedDetails.wifiPassword);
-    //     formControls.phoneNumber.updateValue(savedDetails.phoneNumber);
-    //     formControls.departure.updateValue(savedDetails.departure);
-    //     formControls.notes.updateValue(savedDetails.notes);
-    //   }
-    //
-    // });
+    this.dataService.getCampDetails().then((details)=> {
+
+      let savedDetails: any = false;
+
+      if(typeof(details) != "undefined" ){
+        savedDetails = JSON.parse(details);
+      }
+
+      let formControls: any = this.campDetailsForm.controls;
+
+      if(savedDetails){
+
+        formControls.gateAccessCode.updateValue(savedDetails.gateAccessCode);
+            formControls.ammenitiesCode.updateValue(savedDetails.ammenitiesCode);
+            formControls.wifiPassword.updateValue(savedDetails.wifiPassword);
+            formControls.phoneNumber.updateValue(savedDetails.phoneNumber);
+            formControls.departure.updateValue(savedDetails.departure);
+            formControls.notes.updateValue(savedDetails.notes);
+      }
+
+    });
+
+
 
   }
 
   saveForm(): void {
     let data = this.campDetailsForm.value;
-    // this.dataService.setCampDetails(data);
+    this.dataService.setCampDetails(data);
   }
 
 }
